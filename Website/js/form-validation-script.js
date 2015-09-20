@@ -1,4 +1,4 @@
-﻿var Script = function () {
+var Script = function () {
 
     $.validator.setDefaults({
         submitHandler: function () { alert("submitted!"); }
@@ -15,13 +15,10 @@
                     required: true,
                     minlength: 6
                 },
-                address: {
-                    required: true,
-                    minlength: 10
-                },
+              
                 username: {
                     required: true,
-                    minlength: 5
+                    minlength: 6
                 },
                 password: {
                     required: true,
@@ -47,10 +44,7 @@
                     required: "Please enter a Full Name.",
                     minlength: "Your Full Name must consist of at least 6 characters long."
                 },
-                address: {
-                    required: "Please enter a Address.",
-                    minlength: "Your Address must consist of at least 10 characters long."
-                },
+       
                 username: {
                     required: "Please enter a Username.",
                     minlength: "Your username must consist of at least 5 characters long."
@@ -64,6 +58,7 @@
                     minlength: "Your password must be at least 5 characters long.",
                     equalTo: "Please enter the same password as above."
                 },
+
                 email: "Please enter a valid email address.",
                 agree: "Please accept our terms & condition."
             }
