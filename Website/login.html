@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -28,8 +28,8 @@
       <form class="login-form" action="index.html">        
         <div class="login-wrap">
 
-            <button class="btn btn-info"    type="submit">General Users</button>
-<button class="btn btn-info" style="float: right;"    type="submit">Administrators</button>
+            <!--<button class="btn btn-info"    type="submit">General Users</button>
+            <button class="btn btn-info" style="float: right;"    type="submit">Administrators</button>-->
 
 
             <p class="login-img"><i class="icon_lock_alt"></i></p>
@@ -41,15 +41,24 @@
                 <span class="input-group-addon"><i class="icon_key_alt"></i></span>
                 <input type="password" class="form-control" placeholder="Password">
             </div>
-                       
-           <a href="#" class="btn btn-primary btn-lg btn-block btn btn-info" type="submit" role="button">Login</a>
 
+            <div class="input-group">
+                <div class="fb-login-button" data-scope="public_profile,email" data-show-faces="true" data-width="200" data-max-rows="2" onlogin="checkLoginState()">Login using Facebook</div>
+            </div>
+
+                       
+            <a href="index.html" class="btn btn-primary btn-lg btn-block btn btn-info" type="submit" role="button">Login</a>
             <a href="Registration.html" class="btn btn-primary btn-lg btn-block btn btn-info" type="submit" role="button">SignUp</a>
+
         </div>
       </form>
 
     </div>
 
+
+
+
+      <script type="text/javascript" src="js/facebook.js"></script>
 
   </body>
 </html>
