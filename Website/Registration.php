@@ -181,7 +181,7 @@ if(!empty($_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['p
     if($result){
         $message = "Account Successfully Created";
 echo "<script type='text/javascript'>alert('$message');</script>";
-    echo "Account Successfully Created";
+   
     } 
 
     } else {
