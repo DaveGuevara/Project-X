@@ -28,10 +28,6 @@
       <form class="login-form" action="" method="POST" >        
         <div class="login-wrap">
 
-            <!--<button class="btn btn-info"    type="submit">General Users</button>
-            <button class="btn btn-info" style="float: right;"    type="submit">Administrators</button>-->
-
-
             <p class="login-img"><i class="icon_lock_alt"></i></p>
             <div class="input-group">
               <span class="input-group-addon"><i class="icon_profile"></i></span>
@@ -55,45 +51,52 @@
       </form>
 
     </div>
+
+      
+      
+      
+      
 <?php
+include("connection.php");
+
+
 if(isset($_POST["submit"])){
+    
+    if(!empty($_POST['email']) && !empty($_POST['password'])) {
+        $email=$_POST['email'];
+        $password=$_POST['password'];
+        
+        $query = mysqli_query($dbc, "SELECT * FROM users WHERE email='" .$email. "' AND password='" .$password. "'");                    
+        $numrows = mysqli_num_rows($query);                
+        
+        if($numrows!=0)
+        {
+            while($row= mysqli_fetch_array($query))
+            {
+                $dbemail=$row['email'];
+                $dbpassword=$row['password'];
+            }
 
-if(!empty($_POST['email']) && !empty($_POST['password'])) {
-    $email=$_POST['email'];
-    $password=$_POST['password'];
+            if($email == $dbemail && $password == $dbpassword)
+            {
+                session_start();
+                $_SESSION['sess_user']=$email;
 
-    $con=mysql_connect('localhost','root','') or die(mysql_error());
-    mysql_select_db('user_registration') or die("cannot select DB");
-
-    $query=mysql_query("SELECT * FROM login WHERE email='".$email."' AND password='".$password."'");
-    $numrows=mysql_num_rows($query);
-    if($numrows!=0)
-    {
-    while($row=mysql_fetch_assoc($query))
-    {
-    $dbemail=$row['email'];
-    $dbpassword=$row['password'];
+                /* Redirect browser */
+                header("Location: index.html");
+            }
+        } 
+        else 
+        {
+            $message = "Invalid username or password!";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+        }
     }
-
-    if($email == $dbemail && $password == $dbpassword)
+    else 
     {
-    session_start();
-    $_SESSION['sess_user']=$email;
-
-    /* Redirect browser */
-    header("Location: index.html");
+        $message2 = "All fields are required!";
+        echo "<script type='text/javascript'>alert('$message2');</script>";
     }
-    } else {
-         $message = "Invalid username or password!";
-echo "<script type='text/javascript'>alert('$message');</script>";
-  
-    }
-
-} else {
-     $message2 = "All fields are required!";
-echo "<script type='text/javascript'>alert('$message2');</script>";
-
-}
 }
 ?>
 
