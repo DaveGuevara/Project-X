@@ -153,43 +153,48 @@
 
 
 <?php
-include("connection.php");
-
 if(isset($_POST["submit"])){
 
-    if(!empty($_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['pass'])  && !empty($_POST['email']) && !empty($_POST['genderRadios']) ) {
-        $firstname=$_POST['firstname'];
-        $lastname=$_POST['lastname'];
-        $pass=$_POST['pass'];
-        $email=$_POST['email'];
-        $genderRadios=$_POST['genderRadios'];
-        $username = $_POST['username
+if(!empty($_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['pass'])  && !empty($_POST['email']) 
+&& !empty($_POST['genderRadios'])   ) {
+    $firstname=$_POST['firstname'];
+      $lastname=$_POST['lastname'];
+    $pass=$_POST['pass'];
+ 
+    $email=$_POST['email'];
+    $genderRadios=$_POST['genderRadios'];
 
-        $query=mysql_query("SELECT * FROM users WHERE username='".$firstname."'");
-        $numrows=mysql_num_rows($query);
-        if($numrows==0)
-        {
-            $sql="INSERT INTO login(firstname,lastname,password, email,Gender) VALUES('$firstname','$lastname', '$pass',
-                '$email','$genderRadios')";
 
-            $result=mysql_query($sql);
-            if($result){
-                $message = "Account Successfully Created";
-                echo "<script type='text/javascript'>alert('$message');</script>";
-            } 
+    $con=mysql_connect('localhost','root','') or die(mysql_error());
+    mysql_select_db('user_registration') or die("cannot select DB");
 
-        } 
-        else
-        {
-            $message2 = "That username already exists! Please try again with another.";
-            echo "<script type='text/javascript'>alert('$message2');</script>";
-        }
-    } 
-    else 
+    $query=mysql_query("SELECT * FROM login WHERE firstname='".$firstname."'");
+    $numrows=mysql_num_rows($query);
+    if($numrows==0)
     {
-         $message3 = "All fields are required!";
-        echo "<script type='text/javascript'>alert('$message3');</script>";
+    $sql="INSERT INTO login(firstname,lastname,password,email,Gender) VALUES('$firstname','$lastname', '$pass',
+        '$email','$genderRadios')";
+
+    $result=mysql_query($sql);
+
+
+    if($result){
+        $message = "Account Successfully Created";
+echo "<script type='text/javascript'>alert('$message');</script>";
+   
+    } 
+
+    } else {
+         $message2 = "That username already exists! Please try again with another.";
+echo "<script type='text/javascript'>alert('$message2');</script>";
+ 
     }
+
+} else {
+             $message3 = "All fields are required!";
+echo "<script type='text/javascript'>alert('$message3');</script>";
+ 
+}
 }
 ?>
 
