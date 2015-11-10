@@ -23,6 +23,10 @@
 
   <body class="login-img3-body">
 
+      
+  <div id="fb-root"></div>
+      
+      
     <div class="container">
 
       <form class="login-form" action="" method="POST" >        
@@ -39,7 +43,7 @@
             </div>
 
             <div class="input-group">
-                <div class="fb-login-button" data-scope="public_profile,email" data-show-faces="true" data-width="200" data-max-rows="2" onlogin="checkLoginState()">Login using Facebook</div>
+                <div class="fb-login-button" data-scope="public_profile,email" data-show-faces="true" data-width="200" data-max-rows="2" onlogin="FacebookLogin()">Login using Facebook</div>
             </div>
 
                
@@ -75,15 +79,28 @@ if(isset($_POST["submit"])){
             {
                 $dbemail=$row['email'];
                 $dbpassword=$row['password'];
+                $isAdmin = $row['isAdmin'];
+                $GUID = $row['GUID'];
+                $ProfCompleted = $row['ProfileCompleted'];
             }
 
             if($email == $dbemail && $password == $dbpassword)
             {
                 session_start();
-                $_SESSION['sess_user']=$email;
-
-                /* Redirect browser */
-                header("Location: index.html");
+                //$_SESSION['sess_user'] = $email;
+                $_SESSION['GUID'] = $GUID;
+                $_SESSION['fb_Log'] = false;
+                $_SESSION['isAdmin'] = $isAdmin;
+                
+                if ($ProfCompleted == false)
+                {
+                    header("Location: Profile.php?#edit-profile");
+                }
+                else
+                {
+                    /* Redirect browser */
+                    header("Location: Dashboard.php");
+                }
             }
         } 
         else 

@@ -29,7 +29,7 @@
                 <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"></div>
             </div>
             <!--logo start-->
-            <a href="index.html" class="logo">Prisoner's <span class="lite">Dilemma</span></a>
+            <a href="Dashboard.php" class="logo">Prisoner's <span class="lite">Dilemma</span></a>
             <!--logo end-->
             <div class="nav search-row" id="top_menu"></div>
             <div class="top-nav notification-row"></div>
@@ -53,7 +53,7 @@
                     <div class="col-lg-12">
                         <h3 class="page-header"><i class="fa fa fa-bars"></i> Registration</h3>
                         <ol class="breadcrumb">
-                            <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
+                            <li><i class="fa fa-home"></i><a href="Dashboard.php">Home</a></li>
                             <li><i class="icon_document_alt"></i>Sign up</li>                            
                         </ol>
                     </div>
@@ -85,7 +85,7 @@
                         <div class="form-group ">
                             <label for="password" class="control-label col-lg-2">Password <span class="required">*</span></label>
                             <div class="col-lg-10">
-                                <input class="form-control " id="password" name="pass" type="password" />
+                                <input class="form-control " id="password" name="password" type="password" />
                             </div>
                         </div>
                         <div class="form-group ">
@@ -153,50 +153,43 @@
 
 
 <?php
+include("connection.php");
+
 if(isset($_POST["submit"])){
 
-if(!empty($_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['pass'])  && !empty($_POST['email']) 
-&& !empty($_POST['genderRadios'])   ) {
-    $firstname=$_POST['firstname'];
-      $lastname=$_POST['lastname'];
-    $pass=$_POST['pass'];
- 
-    $email=$_POST['email'];
-    $genderRadios=$_POST['genderRadios'];
+     if(!empty($_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['password']) && !empty($_POST['confirm_password'])  && !empty($_POST['email']) && !empty($_POST['genderRadios']) ) {
+            $firstname=$_POST['firstname'];
+            $lastname=$_POST['lastname'];
+            $password=$_POST['password'];
+            $confirm_password=$_POST['confirm_password'];
+            $email=$_POST['email'];
+            $genderRadios=$_POST['genderRadios'];
 
+            $query = mysqli_query($dbc, "SELECT * FROM users WHERE email='" .$email. "'");                                   
+            $numrows=mysqli_num_rows($query);
+            if($numrows==0)
+            {
+                $sql="INSERT INTO users(first_name,last_name,password,email,Gender) VALUES('$firstname','$lastname', '$password','$email','$genderRadios')";
 
-    $con=mysql_connect('localhost','root','') or die(mysql_error());
-    mysql_select_db('user_registration') or die("cannot select DB");
+                $result=mysqli_query($dbc, $sql);
+                if($result){
+                    //message = "Account Successfully Created";
+                    //echo "<script type='text/javascript'>alert('$message');</script>";
+                } 
 
-    $query=mysql_query("SELECT * FROM login WHERE firstname='".$firstname."'");
-    $numrows=mysql_num_rows($query);
-    if($numrows==0)
-    {
-    $sql="INSERT INTO login(firstname,lastname,password,email,Gender) VALUES('$firstname','$lastname', '$pass',
-        '$email','$genderRadios')";
-
-    $result=mysql_query($sql);
-
-
-    if($result){
-        $message = "Account Successfully Created";
-echo "<script type='text/javascript'>alert('$message');</script>";
-   
-    } 
-
-    } else {
-         $message2 = "That username already exists! Please try again with another.";
-echo "<script type='text/javascript'>alert('$message2');</script>";
- 
-    }
-
-} else {
+            } 
+            else
+            {
+                $message2 = "That username already exists! Please try again with another.";
+                echo "<script type='text/javascript'>alert('$message2');</script>";
+            }
+        } 
+        else 
+        {
              $message3 = "All fields are required!";
-echo "<script type='text/javascript'>alert('$message3');</script>";
- 
-}
-}
+            echo "<script type='text/javascript'>alert('$message3');</script>";
+        }
+    }
 ?>
-
 </body>
 </html>
