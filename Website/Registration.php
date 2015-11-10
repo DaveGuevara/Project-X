@@ -150,13 +150,14 @@
     <script type="text/javascript" src="js/jquery.validate.min.js"></script>
     <!-- custom form validation script for this page-->
     <script src="js/form-validation-script.js"></script>
-
+    
+</body>
+</html>
 
 <?php
 include("connection.php");
 
 if(isset($_POST["submit"])){
-
      if(!empty($_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['password']) && !empty($_POST['confirm_password'])  && !empty($_POST['email']) && !empty($_POST['genderRadios']) ) {
             $firstname=$_POST['firstname'];
             $lastname=$_POST['lastname'];
@@ -169,14 +170,16 @@ if(isset($_POST["submit"])){
             $numrows=mysqli_num_rows($query);
             if($numrows==0)
             {
-                $sql="INSERT INTO users(first_name,last_name,password,email,Gender) VALUES('$firstname','$lastname', '$password','$email','$genderRadios')";
-
+                //$sql="INSERT INTO users(first_name,last_name,password,email,Gender) VALUES('$firstname','$lastname', '$password','$email','$genderRadios')";
+                
+                $sql = "SELECT * FROM users";
                 $result=mysqli_query($dbc, $sql);
                 if($result){
                     //message = "Account Successfully Created";
                     //echo "<script type='text/javascript'>alert('$message');</script>";
+                    header('Location: profile.php');
+                    exit;
                 } 
-
             } 
             else
             {
@@ -191,5 +194,3 @@ if(isset($_POST["submit"])){
         }
     }
 ?>
-</body>
-</html>
