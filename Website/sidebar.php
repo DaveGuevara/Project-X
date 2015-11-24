@@ -29,7 +29,7 @@ else
 }
     
 $strOut = $strOut . "<li class='sub-menu'>
-                      <a href='game.html' class=>
+                      <a href='game.php' class=>
                           <i class='icon_laptop'></i>
                           <span>Play Game</span>
                           <span class='menu-arrow arrow_carrot-right'></span>

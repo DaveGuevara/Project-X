@@ -52,16 +52,16 @@
                         <ul class="dropdown-menu extended logout">
                             <div class="log-arrow-up"></div>
                             <li class="eborder-top">
-                                <a href="profile.html"><i class="icon_profile"></i> My Profile</a>
+                                <a href="profile.php"><i class="icon_profile"></i> My Profile</a>
                             </li>
                             <li>
-                                <a href="Score.html"><i class="icon_calculator_alt"></i> My Score</a>
+                                <a href="score.php"><i class="icon_calculator_alt"></i> My Score</a>
                             </li>
                             <li>
-                                <a href="Export.html"><i class="icon_download"></i> Export</a>
+                                <a href="export.php"><i class="icon_download"></i> Export</a>
                             </li>
                             <li>
-                                <a href="login.html"><i class="icon_key_alt"></i> Log Out</a>
+                                <a href="login.php"><i class="icon_key_alt"></i> Log Out</a>
                             </li>                         
                         </ul>
                     </li>

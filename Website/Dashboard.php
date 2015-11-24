@@ -29,9 +29,6 @@
   <body>
       
 <script type="text/javascript"> 
-var test = response.status;
-alert(test);
-    
     var logged = false;
         
     var GUID = Session["GUID"];
@@ -83,16 +80,16 @@ alert(test);
                         <ul class="dropdown-menu extended logout">
                             <div class="log-arrow-up"></div>
                             <li class="eborder-top">
-                                <a href="profile.html"><i class="icon_profile"></i> My Profile</a>
+                                <a href="profile.php"><i class="icon_profile"></i> My Profile</a>
                             </li>
                             <li>
-                                <a href="score.html"><i class="icon_calculator_alt"></i> My Score</a>
+                                <a href="score.php"><i class="icon_calculator_alt"></i> My Score</a>
                             </li>
                             <li>
-                                <a href="export.html"><i class="icon_download"></i> Export</a>
+                                <a href="export.php"><i class="icon_download"></i> Export</a>
                             </li>
                             <li>
-                                <a href="login.html"><i class="icon_key_alt"></i> Log Out</a>
+                                <a href="login.php"><i class="icon_key_alt"></i> Log Out</a>
                             </li>                         
                         </ul>
                     </li>
@@ -126,7 +123,7 @@ alert(test);
             <div class="row">
 				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 					<div class="info-box green-bg">
-						<i class="fa fa-bullseye"></i>
+						<a href="score.php"><i class="fa fa-bullseye"></i></a>                        
 						<div class="count">9</div>
 						<div class="title">Latest Score</div>						
 					</div><!--/.info-box-->			
@@ -134,7 +131,7 @@ alert(test);
 				
 				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 					<div class="info-box brown-bg">
-						<i class="fa fa-users"></i>
+                        <a href="whosonline.php"><i class="fa fa-users"></i></a>                        
 						<div class="count"> 7 <br /></div>
 						<div class="title">Who's Online</div>						
 					</div><!--/.info-box-->			
@@ -142,7 +139,7 @@ alert(test);
 				
 				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 					<div class="info-box dark-bg">
-						<i class="fa fa-trophy"></i>
+						<a href="score.php"><i class="fa fa-trophy"></i></a>                        
 						<div class="count">9</div>
 						<div class="title">Top Score</div>						
 					</div><!--/.info-box-->			
@@ -150,7 +147,7 @@ alert(test);
 				
 				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 					<div class="info-box blue-bg">
-						<i class="fa fa-download"></i>
+                        <a href="export.php"><i class="fa fa-download"></i></a>
 						<div class="count"></div>
 						<div class="title">Export</div>						
 					</div><!--/.info-box-->			

@@ -5,8 +5,7 @@
     <meta name="author" content="GeeksLabs">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="img/favicon.png">
-    <title>Score | Prisoner's Dilemma</title>
-
+    <title>Export | Prisoner's Dilemma</title>
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- bootstrap theme -->
@@ -19,7 +18,6 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/style-responsive.css" rel="stylesheet" />
 </head>
-
 <body>
     <!-- container section start -->
     <section id="container" class="">
@@ -48,16 +46,16 @@
                         <ul class="dropdown-menu extended logout">
                             <div class="log-arrow-up"></div>
                             <li class="eborder-top">
-                                <a href="profile.html"><i class="icon_profile"></i> My Profile</a>
+                                <a href="profile.php"><i class="icon_profile"></i> My Profile</a>
                             </li>
                             <li>
-                                <a href="score.html"><i class="icon_calculator_alt"></i> My Score</a>
+                                <a href="score.php"><i class="icon_calculator_alt"></i> My Score</a>
                             </li>
                             <li>
-                                <a href="Export.html"><i class="icon_download"></i> Export</a>
+                                <a href="export.php"><i class="icon_download"></i> Export</a>
                             </li>
                             <li>
-                                <a href="login.html"><i class="icon_key_alt"></i> Log Out</a>
+                                <a href="login.php"><i class="icon_key_alt"></i> Log Out</a>
                             </li>
                         </ul>
                     </li>
@@ -67,7 +65,6 @@
             </div>
         </header>
         <!--header end-->
-
         <!--sidebar start-->
         <aside>
             <div id="sidebar" class="nav-collapse ">
@@ -80,70 +77,32 @@
                         </a>
                     </li>
                     <li class="sub-menu">
-                        <a href="game.html" class="">
+                        <a href="blank.html" class="">
                             <i class="icon_laptop"></i>
                             <span>Play Game</span>
                             <span class="menu-arrow arrow_carrot-right"></span>
                         </a>
-                    </li>                   
+                    </li>
                 </ul>
                 <!-- sidebar menu end-->
             </div>
         </aside>
         <!--sidebar end-->
-
         <!--main content start-->
         <section id="main-content">
             <section class="wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h3 class="page-header"><i class="fa fa fa-bars"></i> Score</h3>
+                        <h3 class="page-header"><i class="fa fa fa-bars"></i> Pages</h3>
                         <ol class="breadcrumb">
                             <li><i class="fa fa-home"></i><a href="Dashboard.php">Home</a></li>
-                            <li><i class="fa fa-square-o"></i>Score</li>                            
+                            <li><i class="fa fa-bars"></i>Pages</li>
+                            <li><i class="fa fa-square-o"></i>Export</li>
                         </ol>
                     </div>
                 </div>
                 <!-- page start-->
-                <div class="bs-tables">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Score</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Current Place</th>
-            </tr>
-        </thead>
-        <tbody>
-        	<tr class="active">
-                <td>20</td>
-                <td>Player X FN</td>
-                <td>Player X LN</td>
-                <td>10th place</td>
-            </tr>
-            <tr class="success">
-                <td>30</td>
-                <td>Player Y FN</td>
-                <td>Player Y LN</td>
-                <td>2nd place</td>
-            </tr>
-            <tr class="active">
-                <td>100</td>
-                <td>Player Z FN</td>
-                <td>Player Z LN</td>
-                <td>12th place</td>
-            </tr>
-             <tr class="success">
-                <td>5</td>
-                <td>Player XX FN</td>
-                <td>Player XX LN</td>
-                <td>3rd place</td>
-            </tr>
-          
-            </tbody>
-    </table>
-</div>
+                Export page content goes here
                 <!-- page end-->
             </section>
         </section>
