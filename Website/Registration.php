@@ -1,3 +1,38 @@
+<?php
+include("connection.php");
+
+if(isset($_POST["submit"])){
+     if(!empty($_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['password']) && !empty($_POST['confirm_password'])  && !empty($_POST['email']) && !empty($_POST['genderRadios']) ) {
+            $firstname=$_POST['firstname'];
+            $lastname=$_POST['lastname'];
+            $password=$_POST['password'];
+            $confirm_password=$_POST['confirm_password'];
+            $email=$_POST['email'];
+            $genderRadios=$_POST['genderRadios'];
+
+            $query = mysqli_query($dbc, "SELECT * FROM users WHERE email='" .$email. "'");                                   
+            $numrows=mysqli_num_rows($query);
+            if($numrows==0)
+            {
+
+                mysqli_query($dbc, "INSERT INTO users(first_name,last_name,password,email,Gender) VALUES('$firstname','$lastname', '$password','$email','$genderRadios')");
+                header('Location: profile.php');
+            } 
+            else
+            {
+                $message2 = "That username already exists! Please try again with another.";
+                echo "<script type='text/javascript'>alert('$message2');</script>";
+            }
+        } 
+        else 
+        {
+             $message3 = "All fields are required!";
+            echo "<script type='text/javascript'>alert('$message3');</script>";
+        }
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -154,43 +189,4 @@
 </body>
 </html>
 
-<?php
-include("connection.php");
 
-if(isset($_POST["submit"])){
-     if(!empty($_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['password']) && !empty($_POST['confirm_password'])  && !empty($_POST['email']) && !empty($_POST['genderRadios']) ) {
-            $firstname=$_POST['firstname'];
-            $lastname=$_POST['lastname'];
-            $password=$_POST['password'];
-            $confirm_password=$_POST['confirm_password'];
-            $email=$_POST['email'];
-            $genderRadios=$_POST['genderRadios'];
-
-            $query = mysqli_query($dbc, "SELECT * FROM users WHERE email='" .$email. "'");                                   
-            $numrows=mysqli_num_rows($query);
-            if($numrows==0)
-            {
-                //$sql="INSERT INTO users(first_name,last_name,password,email,Gender) VALUES('$firstname','$lastname', '$password','$email','$genderRadios')";
-                
-                $sql = "SELECT * FROM users";
-                $result=mysqli_query($dbc, $sql);
-                if($result){
-                    //message = "Account Successfully Created";
-                    //echo "<script type='text/javascript'>alert('$message');</script>";
-                    header('Location: profile.php');
-                    exit;
-                } 
-            } 
-            else
-            {
-                $message2 = "That username already exists! Please try again with another.";
-                echo "<script type='text/javascript'>alert('$message2');</script>";
-            }
-        } 
-        else 
-        {
-             $message3 = "All fields are required!";
-            echo "<script type='text/javascript'>alert('$message3');</script>";
-        }
-    }
-?>
