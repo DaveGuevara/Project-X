@@ -110,7 +110,7 @@
 										<div class="follow-ava">
 											<img src="img/profile-widget-avatar.jpg" alt="">
 										</div>
-										<h6>Administrator</h6>
+										<h6>Student</h6>
 									</div>
 									<div class="col-lg-4 col-sm-4 follow-info">
 										<p>
@@ -136,19 +136,11 @@
 								<header class="panel-heading tab-bg-info">
 									<ul class="nav nav-tabs">
 
-										<!-- <li>
-											<a data-toggle="tab" href="#profile"> <i class="icon-user"></i> Profile </a>
-										</li> -->
-										<!-- <li class="">
-										<a data-toggle="tab" href="#edit-profile"> <i class="icon-envelope"></i> Edit Profile </a>
-										</li> -->
+									
 									</ul>
 								</header>
 								<div class="panel-body">
-									<!-- <div class="tab-content"> -->
-										<!-- <div id="recent-activity" class="tab-pane active">
-
-										</div> -->
+									
 										<!-- profile -->
 										<div id="profile" class="tab-pane">
 											<section class="panel">
@@ -178,7 +170,7 @@
 													
 														<div class="bio-row">
 															<p>
-																<span>Cell </span>:  (+021) 956 789123
+																<span>Class/Section </span>:  BIO-101
 															</p>
 														</div>
 													</div>
@@ -218,12 +210,7 @@
 															</div>
 														</div>
 
-														<div class="form-group">
-															<label class="col-lg-2 control-label">Cell</label>
-															<div class="col-lg-6">
-																<input type="text" class="form-control" id="mobile" placeholder=" ">
-															</div>
-														</div>
+														
 
 														<div class="form-group">
 															<div class="col-lg-offset-2 col-lg-10">
@@ -261,7 +248,7 @@
 													</div>
 
 													<div class="form-group">
-														<label class="col-lg-2 control-label">New Password<span class="required">*</span></label>
+														<label class="col-lg-2 control-label">Confirm New Password<span class="required">*</span></label>
 														<div class="col-lg-6">
 															<input type="text" class="form-control" id="email" placeholder=" ">
 														</div>

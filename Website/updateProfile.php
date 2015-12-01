@@ -26,14 +26,53 @@
     ?>
     
     <br/><br/>
-    <form action="updatephone.php" method="post">	   
+   
+    
+     <br/><br/>
+    <form action="updateProfile.php" method="post">	   
         <input type = "hidden" name = "stage" value = "1" />
-            Update my phone number from: <?php echo $current_phone; ?>
-           to: <input type="text" name= "new_phone" size="20" maxlength="50" />
+            Update last name: <?php echo $current_phone; ?>
+           to: <input type="text" name= "new_firstName" size="20" maxlength="50" />
         
-	       <input type="submit" name="submit" value="Update Phone" />
+	       <input type="submit" name="submit" value="Update firstName" />
 	   </form>
     <br/><br/><br/>
+    
+     <br/><br/>
+    <form action="updateProfile.php" method="post">	   
+        <input type = "hidden" name = "stage" value = "1" />
+            Update last name: <?php echo $current_phone; ?>
+           to: <input type="text" name= "new_lastName" size="20" maxlength="50" />
+        
+	       <input type="submit" name="submit" value="Update lastName" />
+	   </form>
+    <br/><br/><br/>
+    
+    
+     <br/><br/>
+    <form action="updateProfile.php" method="post">	   
+        <input type = "hidden" name = "stage" value = "1" />
+            Update last name: <?php echo $current_phone; ?>
+           to: <input type="text" name= "new_email" size="20" maxlength="50" />
+        
+	       <input type="submit" name="submit" value="Update email" />
+	   </form>
+	   
+	   
+	    <form action="updateProfile.php" method="post">	   
+        <input type = "hidden" name = "stage" value = "1" />
+            Update last name: <?php echo $current_phone; ?>
+           to: <input type="text" name= "new_password" size="20" maxlength="50" />
+        
+	       <input type="submit" name="submit" value="Update password" />
+	   </form>
+    <br/><br/><br/>
+	   
+    <br/><br/><br/>
+    
+    
+    
+    
     
     <?php
             } 
@@ -45,7 +84,7 @@
                     //delete user where email = $email_from_form_input: 
                     $query = "UPDATE users SET phone = " . $new_phone . " WHERE ID= " . $id;		
                     mysqli_query($dbc, $query);		
-                    echo "The phone number has been updated successfully!";
+                    echo "Profile update successufully!";
                     }
                     else
                     {
