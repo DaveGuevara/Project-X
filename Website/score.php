@@ -123,17 +123,25 @@ ORDER BY compDate desc");
                     </div>
                 </div>
                 <!-- page start-->
-                <div class="bs-tables">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Rival Name</th>
-                <th>My Action</th>
-                <th>My Action Date</th>
-                <th>Score</th>
-            </tr>
-        </thead>
-        <tbody>                        
+                    
+                <div class="row">               	
+				<div class="col-lg-9 col-md-12">	
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h2><i class="fa fa-flag-o red"></i><strong>My latest scores</strong></h2>							
+						</div>
+						<div class="panel-body">
+							<table class="table bootstrap-datatable countries">                    
+
+							<thead>
+                            <tr>
+                                <th>Rival Name</th>
+                                <th>My Action</th>
+                                <th>My Action Date</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>                        
             
             <?php
             while ( $row = mysqli_fetch_array($query)){        
@@ -148,9 +156,14 @@ ORDER BY compDate desc");
             mysqli_close($dbc); 
             ?>                                                  
           
-            </tbody>
-    </table>
-</div>
+                        </tbody>                        
+                        </table>
+						</div>
+	
+					</div>	
+
+				</div><!--/col-->
+								
                 <!-- page end-->
             </section>
         </section>
