@@ -1,7 +1,7 @@
 <?php
 include("connection.php");
 
-    $query = mysqli_query($dbc,"SELECT groupplayers.PlayerName, class.ClassName, class.Section, timestampdiff(MINUTE, logins.SessionStart, now()) as logedsince FROM  logins join groupplayers on logins.UserGUID = groupplayers.UserGUID join class on groupplayers.ClassID = class.ClassID WHERE logins.SessionEnd is null");
+    $query = mysqli_query($dbc,"SELECT groupplayers.PlayerName, class.ClassName, class.Section, (timestampdiff(MINUTE, logins.SessionStart, now()) + ' mins') as logedsince FROM  logins join groupplayers on logins.UserGUID = groupplayers.UserGUID join class on groupplayers.ClassID = class.ClassID WHERE logins.SessionEnd is null order by logedsince asc");
 ?>
 
 
@@ -104,8 +104,23 @@ include("connection.php");
 						</div>
 					</div>
 					<!-- page start-->
-					<div class="table-responsive">
-						<table class="table table-bordered">
+                    
+                    
+<div class="row">
+               	
+				<div class="col-lg-9 col-md-12">	
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h2><i class="fa fa-flag-o red"></i><strong>Registered Users</strong></h2>
+							<div class="panel-actions">
+								<a href="index.html#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
+								<a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+								<a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
+							</div>
+						</div>
+						<div class="panel-body">
+							<table class="table bootstrap-datatable countries">                    
+
 							<thead>
 								<tr>
 									<th>Player Name</th>
@@ -129,9 +144,15 @@ include("connection.php");
                 }
             mysqli_close($dbc); 
             ?>                                                                        
-                    
-						</table>
-					</div>
+                                </tbody>
+                            </table>
+						</div>
+	
+					</div>	
+
+				</div><!--/col-->
+										
+
 					<!-- page end-->
 				</section>
 			</section>
