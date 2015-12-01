@@ -188,6 +188,10 @@
 												<div class="row"></div>
 											</section>
 										</div>
+										
+										
+										
+										
 										<!-- edit-profile -->
 										<div id="edit-profile" class="tab-pane">
 											<section class="panel">

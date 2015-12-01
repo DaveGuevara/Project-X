@@ -17,7 +17,12 @@
         if (!IsSEt($stage)) {
             $r = mysqli_query($dbc, "SELECT * FROM users WHERE ID=". $id );
             $row = mysqli_fetch_array($r);
-            $current_phone = $row['phone'];                 
+             $current_firstName = $row['firstName'];  
+              $current_lastName = $row['lastNmae'];  
+               $current_email = $row['email'];  
+                $current_phone = $row['phone'];
+                $current_password = $row['password']; 
+                                 
     ?>
     
     <br/><br/>
