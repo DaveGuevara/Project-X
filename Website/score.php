@@ -1,3 +1,21 @@
+<?php
+include("connection.php");
+
+    session_start();
+    $GUID = $_SESSION['GUID'];
+    $query = mysqli_query($dbc,"SELECT Player1ID as GUID, groupplayers.PlayerName, Player1Score as score, Player1Action as actions, Player1CompleteDate as compDate, Player2ID as rivalID, (select playername from groupplayers where UserGUID = Player2ID) as rivalName
+FROM game join groupplayers on game.Player1ID = groupplayers.UserGUID
+WHERE Player1ID = '$GUID'
+UNION 
+SELECT Player2ID as GUID, groupplayers.PlayerName, Player2Score as score, Player2Action as actions, Player2CompleteDate as compDate, Player1ID as rivalID, (select playername from groupplayers where UserGUID = Player1ID) as rivalName
+FROM game join groupplayers on game.Player2ID = groupplayers.UserGUID
+WHERE Player2ID = '$GUID' 
+ORDER BY compDate desc");
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -109,37 +127,26 @@
     <table class="table">
         <thead>
             <tr>
+                <th>Rival Name</th>
+                <th>My Action</th>
+                <th>My Action Date</th>
                 <th>Score</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Current Place</th>
             </tr>
         </thead>
-        <tbody>
-        	<tr class="active">
-                <td>20</td>
-                <td>Player X FN</td>
-                <td>Player X LN</td>
-                <td>10th place</td>
-            </tr>
-            <tr class="success">
-                <td>30</td>
-                <td>Player Y FN</td>
-                <td>Player Y LN</td>
-                <td>2nd place</td>
-            </tr>
-            <tr class="active">
-                <td>100</td>
-                <td>Player Z FN</td>
-                <td>Player Z LN</td>
-                <td>12th place</td>
-            </tr>
-             <tr class="success">
-                <td>5</td>
-                <td>Player XX FN</td>
-                <td>Player XX LN</td>
-                <td>3rd place</td>
-            </tr>
+        <tbody>                        
+            
+            <?php
+            while ( $row = mysqli_fetch_array($query)){        
+                print  "<tr>
+                       <td>" . $row['rivalName'] . "</td>
+                       <td>" . $row['actions'] . "</td>
+                       <td>" . $row['compDate'] . "</td>
+                       <td>" . $row['score'] . "</td>               
+                       </tr>"               
+                        ;        		
+                }
+            mysqli_close($dbc); 
+            ?>                                                  
           
             </tbody>
     </table>
