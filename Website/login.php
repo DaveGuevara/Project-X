@@ -70,7 +70,7 @@ if(isset($_POST["submit"])){
         $email=$_POST['email'];
         $password=$_POST['password'];
         
-        $query = mysqli_query($dbc, "SELECT * FROM users WHERE email='" .$email. "' AND password='" .$password. "'");                    
+        $query = mysqli_query($dbc, "SELECT users.*, IFNULL(groups.GroupName, 'BLACK') as GroupName FROM users left join groupplayers on users.GUID = groupplayers.UserGUID left join groups on groupplayers.GroupID = groups.GroupID WHERE email='" .$email. "' AND password='" .$password. "'");                    
         $numrows = mysqli_num_rows($query);                
         
         if($numrows!=0)
@@ -83,6 +83,7 @@ if(isset($_POST["submit"])){
                 $GUID = $row['GUID'];
                 $ProfCompleted = $row['ProfileCompleted'];
                 $UserName = $row['first_name'] . ' ' . $row['last_name'];
+                $group = strtoupper($row['GroupName']);
             }
 
             if($email == $dbemail && $password == $dbpassword)
@@ -93,6 +94,7 @@ if(isset($_POST["submit"])){
                 $_SESSION['GUID'] = $GUID;
                 $_SESSION['fb_Log'] = false;
                 $_SESSION['isAdmin'] = $isAdmin;
+                $_SESSION['group'] = $group;
                 
                 if ($ProfCompleted == false)
                 {

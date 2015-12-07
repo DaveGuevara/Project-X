@@ -28,7 +28,7 @@ session_start();
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" href="img/favicon.png">
 
-		<title>User Management | Prisoner's Dilemma</title>
+		<title>Setup Groups | Prisoner's Dilemma</title>
 
 		<!-- Bootstrap CSS -->
 		<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -124,84 +124,108 @@ session_start();
 				<section class="wrapper">
 					<div class="row">
 						<div class="col-lg-12">
-							<h3 class="page-header"><i class="fa fa fa-bars"></i>Users Management</h3>
+							<h3 class="page-header"><i class="fa fa fa-bars"></i>Group Management</h3>
 							<ol class="breadcrumb">
 								<li>
 									<i class="fa fa-home"></i><a href="Dashboard.php">Home</a>
 								</li>
 								<li>
-									<i class="fa fa-users"></i>Users
+									<i class="fa fa-users"></i>Group
 								</li>
 							</ol>
 						</div>
 					</div>
 					<!-- page start-->
 				
+                    
+                    
+                    <!-- INSERT NEW CLASS START-->
+                    
+                        <div class="panel panel-default">
+                            <div class="panel-heading">                                                                
+                              <div class="pull-left">Add new group</div>
+                              <div class="widget-icons pull-right">                                
+                                <a href="#" class="wclose"><i class="fa fa-times"></i></a>
+                              </div>  
+                              <div class="clearfix"></div>
+                            </div>
+                            <div class="panel-body">
+                                
+                                
+                              <div class="padd">
+
+                                  <div class="form quick-post">
+                                                  <!-- Edit profile form (not working)-->
+                                                  <form class="form-horizontal">
+                                                      <div class="col-lg-12">
+                                                          <div class="col-lg-6">
+                                                              <!-- Class Name -->                                                    
+                                                              <div class="form-group">
+                                                                <label class="control-label col-lg-4" for="title">Group Name</label>
+                                                                <div class="col-lg-8"> 
+                                                                  <input type="text" class="form-control" id="groupname">
+                                                                </div>
+                                                              </div>                                                                             
+                                                          </div>
+                                                          
+                                                          <div class="col-lg-6">
+                                                            <!-- Section -->
+                                                              <div class="form-group">
+                                                                 <div class="col-lg-offset-5 col-lg-6">
+                                                                    <button type="submit" class="btn btn-primary">Save</button>                           
+                                                                    <button type="reset" class="btn btn-default">Reset</button>
+                                                                 </div>
+                                                              </div>          
+                                                          </div>                                                          
+                                                      </div>                                                    
+                                                  </form>
+                                                </div>
+
+
+                              </div>
+                              <div class="widget-foot">
+                                <!-- Footer goes here -->
+                              </div>
+                            </div>
+                        </div>
+                    
+                    <!-- INSERT NEW CLASS END -->
+                    
+                    <br/><br/>
 
 					<!-- advanced user table starts -->
             <div class="row">
                   <div class="col-lg-12">
                       <section class="panel">
                           <header class="panel-heading">
-                              Displaying all users
+                              Displaying all classes
                           </header>
                           
                           <table class="table table-striped table-advance table-hover">
                            <tbody>
-                              <tr>
-                                 <th><i class="icon_profile"></i> Full Name</th>
-                                 <th><i class="icon_heart"></i> Gender</th>
-                                 <th><i class="icon_mail"></i> Email</th>
-                                 <th><i class="icon_contacts"></i> Class</th>
-                                 <th><i class="icon_chat"></i> Section</th>
-                                 <th><i class="icon_group"></i> Group</th>
+                              <tr>                                 
+                                 <th><i class="icon_group"></i> Group Name</th>                                 
                                  <th><i class="icon_cogs"></i> Action</th>
-                              </tr>
-                               
+                              </tr>                               
                                
     <?php
     include("connection.php");
-    $query = mysqli_query($dbc,"SELECT u.GUID, c.ClassID, gp.GroupPlayersID, g.GroupID, CONCAT(u.first_name, ' ', u.last_name ) as FullName, u.gender, u.email, c.classname, c.section, gp.PlayerName, g.GroupName FROM users as u LEFT JOIN class c on u.ClassID = c.ClassID LEFT JOIN groupplayers gp on u.GUID = gp.UserGUID LEFT JOIN groups g on gp.GroupID = g.GroupID WHERE u.ActivePlayer = 1 ORDER BY FullName asc");
+    $query = mysqli_query($dbc,"SELECT * FROM groups");
 
             while ( $row = mysqli_fetch_array($query)){        
-                $output =  "<tr>
-                       <td>" . $row['FullName'] . "</td>
-                       <td>" . $row['gender'] . "</td>
-                       <td>" . $row['email'] . "</td>
-                       <td>" . $row['classname'] . "</td>               
-                       <td>" . $row['section'] . "</td>                           
-                       <td>
-                                  <div class='btn-group'>";
-                                        if (strtoupper($row['GroupName']) == 'RED')
-                                        {                                  
-                                            $output = $output."<i class='btn btn-primary icon_group'></i>";
-                                        }
-                                        if (strtoupper($row['GroupName']) == 'GREEN')
-                                        {
-                                            $output = $output."<i class='btn btn-success icon_group'></i>";
-                                        }
-                                        if (strtoupper($row['GroupName']) == 'BLUE')
-                                        {
-                                            $output = $output."<i class='btn btn-danger icon_group'></i>";
-                                        }
-                            $output = $output."</div>
-                            </td>                      
-                        <td>
-                            
-                            <a href='#' id='EditDetails' class='EditDetails btn btn-info btn-sm' text='Edit'>Edit
-        <div class='details hide'>
-            <h1>".$row['FullName'] . "</h1>
-            <p>". $row['email']. "</p>
-            <ul>
-                <li>".$row['classname']."</li>
-                <li>".$row['GroupName']."</li>
-            </ul>
-        </div>
-    </a>                                                    
+                $output =  "<tr>                       
+                       <td>" . $row['GroupName'] . "</td>                                      
+                       <td>                            
+                            <a href='#' id='EditDetails' class='EditDetails btn btn-info btn-sm'>Edit
+                                <div class='details hide'>
+                                    <h1>".$row['GroupName'] . "</h1>                                    
+                                </div>
+                            </a>
+                            <a href='#' id='DeleteClass' class='DeleteDetails btn btn-danger btn-sm'>Delete
+                            </a>
                         </td>
                        </tr>"               
                         ;
-                //<button type='button' class='btn btn-info btn-sm' data-toggle='modal' data-user-id='" .$row['GUID'] . "' data-target='#editModal'>edit</button>
                 print $output;
                 }
             mysqli_close($dbc); 

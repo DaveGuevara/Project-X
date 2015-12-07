@@ -1,21 +1,23 @@
 <?php
 session_start();
     $logged = false;
-    
-    try
+    if(!empty($_SESSION['GUID']))
     {
+        $logged = true;
+    }
+   
+    if ($logged)
+    {    
     $UserName = $_SESSION["UserName"];
     $GUID = $_SESSION["GUID"];
     $fb_Log = $_SESSION["fb_Log"];
     $isAdmin = $_SESSION["isAdmin"];    
-    
-    if ($GUID != ''){ $logged = true;}        
-        
+    $group = $_SESSION["group"];                   
     }
-    catch (Exception $ex) {
+    else
+    {
         header('Location: login.php');
     }
-
 ?>
 
 
@@ -61,8 +63,22 @@ session_start();
 						<!-- user login dropdown start-->
 						<li class="dropdown">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <span class="profile-ava"> <img alt="" src="img/avatar1_small.jpg"> </span>
-                                <?php 
+                                <?php
+                                    switch($group)
+                                    {
+                                        case "RED":
+                                            echo ("<span class='profile-ava'> <img alt='' src='img/avatar_small_red.jpg'> </span>"); 
+                                            break;
+                                        case "GREEN":
+                                            echo ("<span class='profile-ava'> <img alt='' src='img/avatar_small_green.jpg'> </span>"); 
+                                            break;
+                                        case "BLUE":
+                                            echo ("<span class='profile-ava'> <img alt='' src='img/avatar_small_blue.jpg'> </span>");
+                                            break;
+                                        default:  
+                                            echo ("<span class='profile-ava'> <img alt='' src='img/avatar_small_black.jpg'> </span>");
+                                            break;
+                                    }     
                                     echo ("<label id='username' class='username' > ". $UserName . "</label>");
                                 ?>
                                 <b class="caret"></b> 
