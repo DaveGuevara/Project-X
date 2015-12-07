@@ -830,8 +830,9 @@ div[data-role="editor-toolbar"] {
     padding-right: 10px
 }
 
-.top-nav .username {
-    font-size: 13px;
+.username {
+    font-weight: bold;
+    font-size: 15px;
     color: #bdbdbd;
 }
 
@@ -4939,3 +4940,7 @@ span.customSelect.changed {
 .customSelectInner {
     background:url(../img/customSelect-arrow.gif) no-repeat center right;
 }
+
+
+.fix
+{ margin-top: -20px !important;}

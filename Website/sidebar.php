@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 $isAdmin = $_SESSION['isAdmin'];
 
 $strOut = "<aside>
@@ -16,13 +16,19 @@ $strOut = "<aside>
 
 if ($isAdmin == 1)
 {   
-    $strOut = $strOut . "  <li class='sub-menu'>
-                      <a href='Admin.php' class=''>
+    $strOut = $strOut . "  
+        <li class='sub-menu'>
+                      <a href='javascript:;' class=''>
                           <i class='icon_laptop'></i>
                           <span>Admin Features</span>
                           <span class='menu-arrow arrow_carrot-right'></span>
-                      </a>                      
-                  </li>";       
+                      </a>
+                      <ul class='sub'>
+                          <li><a class='' href='UserManagement.php'>User Management</a></li>
+                          <li><a class='' href='SetupClasses.php'>Setup Classes</a></li>
+                          <li><a class='' href='SetupGroups.php'>Setup Groups</a></li>
+                      </ul>
+                  </li>";           
 }
 else
 {    

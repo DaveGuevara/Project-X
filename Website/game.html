@@ -22,6 +22,28 @@
 	</head>
 
 	<body>
+        
+<script type="text/javascript"> 
+    var logged = false;
+        
+    var GUID = Session["GUID"];
+    var fb_Log = Session["fb_Log"];
+    var isAdmin = Session["isAdmin"];    
+    
+    if (response.status === 'connected' || GUID != ''){ logged = true;}
+    
+    alert( response.status + ' - ' + GUID + ' - ' + fb_Log + ' - ' + isAdmin);
+                      
+    if(logged == true){
+        var test = "";
+    }
+    else
+    {
+        window.location = "Login.php";
+    }
+      
+</script>           
+        
 		<!-- container section start -->
 		<section id="container" class="">
 			<!--header start-->

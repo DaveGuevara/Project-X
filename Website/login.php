@@ -82,12 +82,14 @@ if(isset($_POST["submit"])){
                 $isAdmin = $row['isAdmin'];
                 $GUID = $row['GUID'];
                 $ProfCompleted = $row['ProfileCompleted'];
+                $UserName = $row['first_name'] . ' ' . $row['last_name'];
             }
 
             if($email == $dbemail && $password == $dbpassword)
             {
                 session_start();
                 //$_SESSION['sess_user'] = $email;
+                $_SESSION['UserName'] = $UserName;
                 $_SESSION['GUID'] = $GUID;
                 $_SESSION['fb_Log'] = false;
                 $_SESSION['isAdmin'] = $isAdmin;

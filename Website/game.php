@@ -1,3 +1,23 @@
+<?php
+session_start();
+    $logged = false;
+    
+    try
+    {
+    $UserName = $_SESSION["UserName"];
+    $GUID = $_SESSION["GUID"];
+    $fb_Log = $_SESSION["fb_Log"];
+    $isAdmin = $_SESSION["isAdmin"];    
+    
+    if ($GUID != ''){ $logged = true;}        
+        
+    }
+    catch (Exception $ex) {
+        header('Location: login.php');
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -42,7 +62,13 @@
 					<ul class="nav pull-right top-menu">
 						<!-- user login dropdown start-->
 						<li class="dropdown">
-							<a data-toggle="dropdown" class="dropdown-toggle" href="#"> <span class="profile-ava"> <img alt="" src="img/avatar1_small.jpg"> </span> <span class="username">Jenifer Smith</span> <b class="caret"></b> </a>
+							<a data-toggle="dropdown" class="dropdown-toggle" href="#"> 
+                                <span class="profile-ava"> <img alt="" src="img/avatar1_small.jpg"> </span> 
+                                <?php 
+                                echo ("<label id='username' class='username' > ". $UserName . "</label>");
+                                ?>
+                                <b class="caret"></b> 
+                            </a>
 							<ul class="dropdown-menu extended logout">
 								<div class="log-arrow-up"></div>
 								<li class="eborder-top">

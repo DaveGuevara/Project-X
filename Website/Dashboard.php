@@ -1,3 +1,22 @@
+<?php 
+    session_start();
+    $logged = false;
+    
+    try
+    {
+    $UserName = $_SESSION["UserName"];
+    $GUID = $_SESSION["GUID"];
+    $fb_Log = $_SESSION["fb_Log"];
+    $isAdmin = $_SESSION["isAdmin"];    
+    
+    if ($GUID != ''){ $logged = true;}        
+        
+    }
+    catch (Exception $ex) {
+        header('Location: login.php');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,7 +25,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>Home | Prisoner's Dilemma</title>
+    <title>Home Dashboard | Prisoner's Dilemma</title>
 
     <!-- Bootstrap CSS -->    
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -27,28 +46,7 @@
   </head>
 
   <body>
-      
-<script type="text/javascript"> 
-    var logged = false;
         
-    var GUID = Session["GUID"];
-    var fb_Log = Session["fb_Log"];
-    var isAdmin = Session["isAdmin"];    
-    
-    if (response.status === 'connected' || GUID != ''){ logged = true;}
-    
-    alert( response.status + ' - ' + GUID + ' - ' + fb_Log + ' - ' + isAdmin);
-                      
-    if(logged == true){
-        var test = "";
-    }
-    else
-    {
-        window.location = "Login.php";
-    }
-      
-</script>         
-      
       
   <!-- container section start -->
   <section id="container" class="">
@@ -74,7 +72,11 @@
                             <span class="profile-ava">
                                 <img alt="" src="img/avatar1_small.jpg">
                             </span>
-                            <span class="username">Jenifer Smith</span>
+                                                         
+                                <?php 
+                                echo ("<label id='username' class='username' > ". $UserName . "</label>S");
+                                ?>
+                            
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu extended logout">

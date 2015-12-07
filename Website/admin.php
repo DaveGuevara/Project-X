@@ -1,3 +1,22 @@
+<?php
+session_start();
+    $logged = false;
+    
+    try
+    {
+    $UserName = $_SESSION["UserName"];
+    $GUID = $_SESSION["GUID"];
+    $fb_Log = $_SESSION["fb_Log"];
+    $isAdmin = $_SESSION["isAdmin"];    
+    
+    if ($GUID != ''){ $logged = true;}        
+        
+    }
+    catch (Exception $ex) {
+        header('Location: login.php');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,7 +25,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>Blank | Prisoner's Dilemma</title>
+    <title>Admin Dashboard | Prisoner's Dilemma</title>
 
     <!-- Bootstrap CSS -->    
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -15,16 +34,21 @@
     <!--external css-->
     <!-- font icon -->
     <link href="css/elegant-icons-style.css" rel="stylesheet" />
-    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />    
+
     <!-- Custom styles -->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/style-responsive.css" rel="stylesheet" />
+	<link href="css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+
+      <script type="text/javascript" src="js/facebook.js"></script>   
+      
   </head>
 
-  <body>
+  <body>      
   <!-- container section start -->
   <section id="container" class="">
-      <!--header start-->
+     
       
       <header class="header dark-bg">
             <div class="toggle-nav">
@@ -39,20 +63,22 @@
 
             <div class="top-nav notification-row">                
                 <!-- notificatoin dropdown start-->
-                <ul class="nav pull-right top-menu">                    
+                <ul class="nav pull-right top-menu">                                       
                     <!-- user login dropdown start-->
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
                                 <img alt="" src="img/avatar1_small.jpg">
                             </span>
-                            <span class="username">Jenifer Smith</span>
+                            <?php 
+                                echo ("<label id='username' class='username' > ". $UserName . "</label>");
+                            ?>
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu extended logout">
                             <div class="log-arrow-up"></div>
                             <li class="eborder-top">
-                                <a href="Profile.php"><i class="icon_profile"></i> My Profile</a>
+                                <a href="profile.php"><i class="icon_profile"></i> My Profile</a>
                             </li>
                             <li>
                                 <a href="score.php"><i class="icon_calculator_alt"></i> My Score</a>
@@ -61,7 +87,7 @@
                                 <a href="export.php"><i class="icon_download"></i> Export</a>
                             </li>
                             <li>
-                                <a href="Login.php"><i class="icon_key_alt"></i> Log Out</a>
+                                <a href="login.php"><i class="icon_key_alt"></i> Log Out</a>
                             </li>                         
                         </ul>
                     </li>
@@ -73,58 +99,84 @@
       <!--header end-->
 
       <!--sidebar start-->
-      <aside>
-          <div id="sidebar"  class="nav-collapse ">
-              <!-- sidebar menu start-->
-              <ul class="sidebar-menu">                
-                  <li class="active">
-                      <a class="" href="Dashboard.php">
-                          <i class="icon_house_alt"></i>
-                          <span>Dashboard</span>
-                      </a>
-                  </li>
-				  <li class="sub-menu">
-                      <a href="blank.html" class="">
-                          <i class="icon_laptop"></i>
-                          <span>Play Game</span>
-                          <span class="menu-arrow arrow_carrot-right"></span>
-                      </a>                      
-                  </li>                                                        
-              </ul>
-              <!-- sidebar menu end-->
-          </div>
-      </aside>
+      <?php        
+        include("sidebar.php");
+      ?>
       <!--sidebar end-->
-
+      
       <!--main content start-->
       <section id="main-content">
-          <section class="wrapper">
-		  <div class="row">
+          <section class="wrapper">            
+              <!--overview start-->
+			  <div class="row">
 				<div class="col-lg-12">
-					<h3 class="page-header"><i class="fa fa fa-bars"></i> Pages</h3>
+					<h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
 					<ol class="breadcrumb">
 						<li><i class="fa fa-home"></i><a href="Dashboard.php">Home</a></li>
-						<li><i class="fa fa-bars"></i>Pages</li>
-						<li><i class="fa fa-square-o"></i>Pages</li>
+						<li><i class="fa fa-laptop"></i>Dashboard</li>						  	
 					</ol>
 				</div>
 			</div>
-              <!-- page start-->
-              Page content goes here
-              <!-- page end-->
+              
+            <div class="row">
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+					<div class="info-box green-bg">
+						<a href="score.php"><i class="fa fa-bullseye"></i></a>                        
+						<div class="count">9</div>
+						<div class="title">Latest Score</div>						
+					</div><!--/.info-box-->			
+				</div><!--/.col-->
+				
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+					<div class="info-box brown-bg">
+                        <a href="whosonline.php"><i class="fa fa-users"></i></a>                        
+						<div class="count"> 7 <br /></div>
+						<div class="title">Who's Online</div>						
+					</div><!--/.info-box-->			
+				</div><!--/.col-->	
+				
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+					<div class="info-box dark-bg">
+						<a href="score.php"><i class="fa fa-trophy"></i></a>                        
+						<div class="count">9</div>
+						<div class="title">Top Score</div>						
+					</div><!--/.info-box-->			
+				</div><!--/.col-->
+				
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+					<div class="info-box blue-bg">
+                        <a href="export.php"><i class="fa fa-download"></i></a>
+						<div class="count"></div>
+						<div class="title">Export</div>						
+					</div><!--/.info-box-->			
+				</div><!--/.col-->
+				
+			</div><!--/.row-->
+				
+
           </section>
       </section>
       <!--main content end-->
   </section>
-  <!-- container section end -->
+  <!-- container section start -->
+
     <!-- javascripts -->
     <script src="js/jquery.js"></script>
+    <!-- bootstrap -->
     <script src="js/bootstrap.min.js"></script>
-    <!-- nice scroll -->
+    <!-- nice scroll (sidebar)-->
     <script src="js/jquery.scrollTo.min.js"></script>
-    <script src="js/jquery.nicescroll.js" type="text/javascript"></script><!--custome script for all page-->
-    <script src="js/scripts.js"></script>
-
+    <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
+   
+    <!--custome script for all page-->
+    <script src="js/scripts.js"></script>    			
+  
+//<script>
+      //custom select box
+//      $(function(){
+//          $('select.styled').customSelect();
+//      });
+//</script>
 
   </body>
 </html>

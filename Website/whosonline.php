@@ -1,7 +1,21 @@
 <?php
-include("connection.php");
+session_start();
+    $logged = false;
+    
+    try
+    {
+    $UserName = $_SESSION["UserName"];
+    $GUID = $_SESSION["GUID"];
+    $fb_Log = $_SESSION["fb_Log"];
+    $isAdmin = $_SESSION["isAdmin"];    
+    
+    if ($GUID != ''){ $logged = true;}        
+        
+    }
+    catch (Exception $ex) {
+        header('Location: login.php');
+    }
 
-    $query = mysqli_query($dbc,"SELECT groupplayers.PlayerName, class.ClassName, class.Section, CONCAT( timestampdiff(MINUTE, logins.SessionStart, now()),  ' mins') as logedsince  FROM  logins join groupplayers on logins.UserGUID = groupplayers.UserGUID join class on groupplayers.ClassID = class.ClassID WHERE logins.SessionEnd is null order by logedsince asc");
 ?>
 
 
@@ -28,7 +42,7 @@ include("connection.php");
 		<link href="css/style-responsive.css" rel="stylesheet" />
 	</head>
 
-	<body>
+	<body>        
 		<!-- container section start -->
 		<section id="container" class="">
 			<!--header start-->
@@ -46,7 +60,13 @@ include("connection.php");
 					<ul class="nav pull-right top-menu">
 						<!-- user login dropdown start-->
 						<li class="dropdown">
-							<a data-toggle="dropdown" class="dropdown-toggle" href="#"> <span class="profile-ava"> <img alt="" src="img/avatar1_small.jpg"> </span> <span class="username">Jenifer Smith</span> <b class="caret"></b> </a>
+							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="profile-ava"> <img alt="" src="img/avatar1_small.jpg"> </span>
+                                <?php 
+                                    echo ("<label id='username' class='username' > ". $UserName . "</label>");
+                                ?>
+                                <b class="caret"></b> 
+                            </a>
 							<ul class="dropdown-menu extended logout">
 								<div class="log-arrow-up"></div>
 								<li class="eborder-top">
@@ -70,22 +90,12 @@ include("connection.php");
 			</header>
 			<!--header end-->
 
-			<!--sidebar start-->
-			<aside>
-				<div id="sidebar" class="nav-collapse ">
-					<!-- sidebar menu start-->
-					<ul class="sidebar-menu">
-						<li class="active">
-							<a class="" href="Dashboard.php"> <i class="icon_house_alt"></i> <span>Dashboard</span> </a>
-						</li>
-						<li class="sub-menu">
-							<a href="game.html" class=""> <i class="icon_laptop"></i> <span>Play Game</span> <span class="menu-arrow arrow_carrot-right"></span> </a>
-						</li>
-					</ul>
-					<!-- sidebar menu end-->
-				</div>
-			</aside>
-			<!--sidebar end-->
+     <!--sidebar start-->
+      <?php        
+        include("sidebar.php");
+      ?>
+      <!--sidebar end-->
+      
 
 			<!--main content start-->
 			<section id="main-content">
@@ -128,6 +138,9 @@ include("connection.php");
                             <tbody>
                             
             <?php
+include("connection.php");
+    $query = mysqli_query($dbc,"SELECT groupplayers.PlayerName, class.ClassName, class.Section, CONCAT( timestampdiff(MINUTE, logins.SessionStart, now()),  ' mins') as logedsince  FROM  logins join groupplayers on logins.UserGUID = groupplayers.UserGUID join class on groupplayers.ClassID = class.ClassID WHERE logins.SessionEnd is null order by logedsince asc");
+
             while ( $row = mysqli_fetch_array($query)){        
                 print  "<tr>
                        <td>" . $row['PlayerName'] . "</td>

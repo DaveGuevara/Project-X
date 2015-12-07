@@ -1,16 +1,20 @@
 <?php
-include("connection.php");
-
-    session_start();
-    $GUID = $_SESSION['GUID'];
-    $query = mysqli_query($dbc,"SELECT Player1ID as GUID, groupplayers.PlayerName, Player1Score as score, Player1Action as actions, Player1CompleteDate as compDate, Player2ID as rivalID, (select playername from groupplayers where UserGUID = Player2ID) as rivalName
-FROM game join groupplayers on game.Player1ID = groupplayers.UserGUID
-WHERE Player1ID = '$GUID'
-UNION 
-SELECT Player2ID as GUID, groupplayers.PlayerName, Player2Score as score, Player2Action as actions, Player2CompleteDate as compDate, Player1ID as rivalID, (select playername from groupplayers where UserGUID = Player1ID) as rivalName
-FROM game join groupplayers on game.Player2ID = groupplayers.UserGUID
-WHERE Player2ID = '$GUID' 
-ORDER BY compDate desc");
+session_start();
+    $logged = false;
+    
+    try
+    {
+    $UserName = $_SESSION["UserName"];
+    $GUID = $_SESSION["GUID"];
+    $fb_Log = $_SESSION["fb_Log"];
+    $isAdmin = $_SESSION["isAdmin"];    
+    
+    if ($GUID != ''){ $logged = true;}        
+        
+    }
+    catch (Exception $ex) {
+        header('Location: login.php');
+    }
 ?>
 
 
@@ -38,7 +42,8 @@ ORDER BY compDate desc");
     <link href="css/style-responsive.css" rel="stylesheet" />
 </head>
 
-<body>
+<body>          
+        
     <!-- container section start -->
     <section id="container" class="">
         <!--header start-->
@@ -60,7 +65,9 @@ ORDER BY compDate desc");
                             <span class="profile-ava">
                                 <img alt="" src="img/avatar1_small.jpg">
                             </span>
-                            <span class="username">Jenifer Smith</span>
+                            <?php 
+                                echo ("<label id='username' class='username' > ". $UserName . "</label>");
+                            ?>
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu extended logout">
@@ -86,30 +93,12 @@ ORDER BY compDate desc");
         </header>
         <!--header end-->
 
-        <!--sidebar start-->
-        <aside>
-            <div id="sidebar" class="nav-collapse ">
-                <!-- sidebar menu start-->
-                <ul class="sidebar-menu">
-                    <li class="active">
-                        <a class="" href="Dashboard.php">
-                            <i class="icon_house_alt"></i>
-                            <span>Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="game.html" class="">
-                            <i class="icon_laptop"></i>
-                            <span>Play Game</span>
-                            <span class="menu-arrow arrow_carrot-right"></span>
-                        </a>
-                    </li>                   
-                </ul>
-                <!-- sidebar menu end-->
-            </div>
-        </aside>
-        <!--sidebar end-->
-
+      <!--sidebar start-->
+      <?php        
+        include("sidebar.php");
+      ?>
+      <!--sidebar end-->
+      
         <!--main content start-->
         <section id="main-content">
             <section class="wrapper">
@@ -128,7 +117,7 @@ ORDER BY compDate desc");
 				<div class="col-lg-9 col-md-12">	
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h2><i class="fa fa-flag-o red"></i><strong>My latest scores</strong></h2>							
+							<h2><i class="fa fa-flag-o red"></i><strong>My latest scores Users</strong></h2>							
 						</div>
 						<div class="panel-body">
 							<table class="table bootstrap-datatable countries">                    
@@ -144,6 +133,16 @@ ORDER BY compDate desc");
                         <tbody>                        
             
             <?php
+    include("connection.php");        
+    $query = mysqli_query($dbc,"SELECT Player1ID as GUID, groupplayers.PlayerName, Player1Score as score, Player1Action as actions, Player1CompleteDate as compDate, Player2ID as rivalID, (select playername from groupplayers where UserGUID = Player2ID) as rivalName
+FROM game join groupplayers on game.Player1ID = groupplayers.UserGUID
+WHERE Player1ID = '$GUID'
+UNION 
+SELECT Player2ID as GUID, groupplayers.PlayerName, Player2Score as score, Player2Action as actions, Player2CompleteDate as compDate, Player1ID as rivalID, (select playername from groupplayers where UserGUID = Player1ID) as rivalName
+FROM game join groupplayers on game.Player2ID = groupplayers.UserGUID
+WHERE Player2ID = '$GUID' 
+ORDER BY compDate desc");
+
             while ( $row = mysqli_fetch_array($query)){        
                 print  "<tr>
                        <td>" . $row['rivalName'] . "</td>
