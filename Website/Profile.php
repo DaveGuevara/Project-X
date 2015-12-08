@@ -137,7 +137,9 @@ session_start();
 							<div class="profile-widget profile-widget-info">
 								<div class="panel-body">
 									<div class="col-lg-2 col-sm-2">
-										<h4>Jenifer Smith</h4>
+										<h4>
+                                            <?php echo($UserName); ?>                                            
+                                        </h4>
 										<div class="follow-ava">								
                                                                                         
                                 <?php
@@ -196,7 +198,7 @@ session_start();
 										<div id="profile" class="tab-pane">
 											<section class="panel">
 												<div class="bio-graph-heading">
-													Hello I’m Jenifer Smith, a leading expert in interactive and creative design specializing in the mobile medium. My graduation from Massey University with a Bachelor of Design majoring in visual communication.
+													Hello I’m <?php echo($UserName);?>, a leading expert in interactive and creative design specializing in the mobile medium. My graduation from Massey University with a Bachelor of Design majoring in visual communication.
 												</div>
 												<div class="panel-body bio-graph-info">
 													<h1>Profile</h1>
