@@ -96,7 +96,7 @@ session_start();
 									<a href="export.php"><i class="icon_download"></i> Export</a>
 								</li>
 								<li>
-									<a href="login.php"><i class="icon_key_alt"></i> Log Out</a>
+									<a href="logout.php"><i class="icon_key_alt"></i> Log Out</a>
 								</li>
 							</ul>
 						</li>
@@ -114,8 +114,8 @@ session_start();
       <!--sidebar end-->
       
 
-			<!--main content start-->
-			<section id="main-content">
+			
+<section id="main-content">
 				<section class="wrapper">
 					<div class="row">
 						<div class="col-lg-12">
@@ -137,18 +137,38 @@ session_start();
 							<div class="profile-widget profile-widget-info">
 								<div class="panel-body">
 									<div class="col-lg-2 col-sm-2">
-										<h4><?php echo($UserName); ?></h4>
-										<div class="follow-ava">
-											<img src="img/profile-widget-avatar.jpg" alt="">
+										<h4>Jenifer Smith</h4>
+										<div class="follow-ava">								
+                                                                                        
+                                <?php
+                                    switch($group)
+                                    {
+                                        case "RED":
+                                            echo ("<img alt='' src='img/profile-widget-avatar-red.jpg'>"); 
+                                            break;
+                                        case "GREEN":
+                                            echo ("<img alt='' src='img/profile-widget-avatar-green.jpg'>"); 
+                                            break;
+                                        case "BLUE":
+                                            echo ("<img alt='' src='img/profile-widget-avatar-blue.jpg'>");
+                                            break;
+                                        default:  
+                                            echo ("<img alt='' src='img/profile-widget-avatar-black.jpg'>");
+                                            break;
+                                    }                                         
+                                ?>                                
+                            
 										</div>
-										<h6>Student</h6>
+										<h6>
+                                            <?php if ($isAdmin) { echo ("Administrator");} else { echo("Student");} ?>
+                                            </h6>
 									</div>
 									<div class="col-lg-4 col-sm-4 follow-info">
 										<p>
-											Hello I’m Jenifer Smith, a leading expert in interactive and creative design.
+											Hello I’m <?php echo($UserName); ?>.
 										</p>
 										<p>
-											@jenifersmith
+                                            @jenifersmith
 										</p>
 										<p>
 											<i class="fa fa-twitter">jenifertweet</i>
@@ -220,7 +240,7 @@ session_start();
 											<section class="panel">
 												<div class="panel-body bio-graph-info">
 													<h1> Edit Profile</h1>
-													<form class="form-horizontal" role="form">
+													<form class="form-horizontal" role="form" action="updatemyprofile.php" method="post">
 														<div class="form-group">
 															<label class="col-lg-2 control-label">First Name</label>
 															<div class="col-lg-6">
@@ -310,7 +330,12 @@ session_start();
 			</section>
 			<!--main content end-->
 		</section>
-		<!-- container section end -->
+		<!-- container section end -->            
+
+            
+            
+            
+            
 		<!-- javascripts -->
 		<script src="js/jquery.js"></script>
 		<script src="js/bootstrap.min.js"></script>

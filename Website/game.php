@@ -98,7 +98,7 @@ session_start();
 									<a href="export.php"><i class="icon_download"></i> Export</a>
 								</li>
 								<li>
-									<a href="login.php"><i class="icon_key_alt"></i> Log Out</a>
+									<a href="logout.php"><i class="icon_key_alt"></i> Log Out</a>
 								</li>
 							</ul>
 						</li>
@@ -143,7 +143,7 @@ session_start();
                           <div class="panel-body progress-panel">
                             <div class="row">
                               <div class="col-lg-8 task-progress pull-left">
-                                  <h1>Pending actionsy</h1>                                  
+                                  <h1>Pending actions</h1>                                  
                               </div>
                               <div class="col-lg-4">                                                                
                               </div>
@@ -151,108 +151,41 @@ session_start();
                           </div>
                           <table class="table table-hover personal-task">
                               <tbody>
+                                  
                               <tr>
-                                  <td>Today</td>
+                                 <th>Game</th>
+                                 <th>My Rival</th>
+                                 <th>Assigned Date</th>
+                                 <th>Rival Response Date</th>
+                                 <th>Action</th>                                 
+                              </tr>
+                                  
+                              <tr>
                                   <td>
-                                      web design
-                                  </td>
-                                  <td>
-                                      <span class="badge bg-important">Upload</span>
-                                  </td>
-                                  <td>
-                                    <span class="profile-ava">
-                                        <img alt="" class="simple" src="img/avatar1_small.jpg">
+                                      <span class="profile-ava">
+                                        <img alt="" class="simple" src="img/avatar_small_red.jpg">
+                                    </span>
+                                      VS
+                                      <span class="profile-ava">
+                                        <img alt="" class="simple" src="img/avatar_small_green.jpg">
                                     </span>
                                   </td>
-                              </tr>
-                              <tr>
-                                  <td>Yesterday</td>
                                   <td>
-                                      Project Design Task
+                                      12/01/2010
                                   </td>
                                   <td>
-                                      <span class="badge bg-success">Task</span>
+                                      <span class="badge bg-primary">Waiting</span>
                                   </td>
                                   <td>
-                                      <div id="work-progress2"></div>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td>21-10-14</td>
-                                  <td>
-                                      Generate Invoice
+                                     <span class="badge bg-info">No Response</span>
                                   </td>
                                   <td>
-                                      <span class="badge bg-success">Task</span>
-                                  </td>
-                                  <td>
-                                      <div id="work-progress3"></div>
-                                  </td>
-                              </tr>                              
-                              <tr>
-                                  <td>22-10-14</td>
-                                  <td>
-                                      Project Testing
-                                  </td>
-                                  <td>
-                                      <span class="badge bg-primary">To-Do</span>
-                                  </td>
-                                  <td>
-                                      <span class="profile-ava">
-                                        <img alt="" class="simple" src="img/avatar1_small.jpg">
-                                      </span>
+                                      <a href='#' id='cooperate' class='EditDetails btn btn-info btn-sm' text='Edit'>Cooperate</a>
+                                          <a href='#' id='deflect' class='DeleteDetails btn btn-danger btn-sm'>Deflect</a>
                                   </td>
                               </tr>
-                              <tr>
-                                  <td>24-10-14</td>
-                                  <td>
-                                      Project Release Date
-                                  </td>
-                                  <td>
-                                      <span class="badge bg-info">Milestone</span>
-                                  </td>
-                                  <td>
-                                      <div id="work-progress4"></div>
-                                  </td>
-                              </tr>                              
-                              <tr>
-                                  <td>28-10-14</td>
-                                  <td>
-                                      Project Release Date
-                                  </td>
-                                  <td>
-                                      <span class="badge bg-primary">To-Do</span>
-                                  </td>
-                                  <td>
-                                      <div id="work-progress5"></div>
-                                  </td>
-                              </tr>
-							  <tr>
-                                  <td>Last week</td>
-                                  <td>
-                                      Project Release Date
-                                  </td>
-                                  <td>
-                                      <span class="badge bg-primary">To-Do</span>
-                                  </td>
-                                  <td>
-                                      <div id="work-progress1"></div>
-                                  </td>
-                              </tr>
-							  <tr>
-                                  <td>last month</td>
-                                  <td>
-                                      Project Release Date
-                                  </td>
-                                  <td>
-                                      <span class="badge bg-success">To-Do</span>
-                                  </td>
-                                  <td>
-                                      <span class="profile-ava">
-                                        <img alt="" class="simple" src="img/avatar1_small.jpg">
-                                      </span>
-                                  </td>
-                              </tr>
+                              
+                              
                               </tbody>
                           </table>
                       </section>
